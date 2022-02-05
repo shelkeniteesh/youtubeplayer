@@ -1,7 +1,22 @@
 import React from "react";
 
-export default class VideoDetail extends React.Component {
-  render() {
-    return <div>VideoDetail</div>;
+const VideoDetail = ({ video }) => {
+  if (!video) {
+    return <div>Loading...</div>;
   }
-}
+
+  const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
+  return (
+    <div>
+      <div className="ui embed">
+        <iframe src={videoSrc} title="videoplayer"></iframe>
+      </div>
+      <div className="ui segment">
+        <h4 className="ui header">{video.snippet.title}</h4>
+        <p className="description">{video.snippet.description}</p>
+      </div>
+    </div>
+  );
+};
+
+export default VideoDetail;
